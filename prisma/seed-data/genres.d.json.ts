@@ -1,8 +1,8 @@
 type Genre = {
-  id: number;
-  name: string;
-};
+  id: number
+  name: string
+}
 
-const genres: Genre[];
+const genres: Genre[]
 
-export default genres;
+export default genres
