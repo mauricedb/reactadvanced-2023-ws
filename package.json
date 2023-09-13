@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "compile": "tsc --noEmit",
+    "compile:watch": "tsc --noEmit --watch",
     "postinstall": "prisma migrate dev --name init",
     "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
