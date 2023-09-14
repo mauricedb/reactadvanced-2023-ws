@@ -16,7 +16,8 @@ export default function MoviesPage({ searchParams: { genre } }: Props) {
 
   useEffect(() => {
     async function fetchMovies() {
-      const rsp = await fetch(`/api/movies?genre=${genre ?? ''}`)
+      const url = genre ? `/api/movies?genre=${genre}` : '/api/movies'
+      const rsp = await fetch(url)
       const movies = await rsp.json()
       setMovies(movies)
     }

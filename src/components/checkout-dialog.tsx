@@ -1,5 +1,3 @@
-'use client'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import {
@@ -54,7 +52,7 @@ export function CheckoutDialog({
 
   const onSubmit = async (data: CheckoutForm) => {
     try {
-      await checkoutShoppingCart({
+      checkoutShoppingCart({
         account: data.account,
         customerName: data.name,
         movies,

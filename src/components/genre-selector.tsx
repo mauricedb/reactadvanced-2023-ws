@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -18,7 +16,7 @@ export function GenreSelector() {
   const [genres, setGenres] = useState<Genre[]>([])
   const [open, setOpen] = useState(false)
   const searchParams = useSearchParams()
-  const selectedGenre = searchParams.get('genre') ?? ''
+  const selectedGenre = searchParams?.get('genre') ?? ''
   const { push } = useRouter()
   const items = genres.map((genre) => ({
     value: genre.id.toString(),

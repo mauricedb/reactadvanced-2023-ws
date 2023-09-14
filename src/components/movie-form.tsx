@@ -1,5 +1,3 @@
-'use client'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
@@ -20,12 +18,25 @@ import {
 } from '@/components/ui/form'
 import { movieFormSchema } from '@/lib/movie-form-schema'
 
-type Props = {
-  initialMovie: Movie
-  saveMovie: (data: Movie) => Promise<void>
+async function saveMovie(movie: Movie) {
+  const rsp = await fetch(`/api/movies/${movie.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie),
+  })
+
+  if (!rsp.ok) {
+    throw new Error('Something went wrong saving the movie')
+  }
 }
 
-export const MovieForm: FC<Props> = ({ initialMovie, saveMovie }) => {
+type Props = {
+  initialMovie: Movie
+}
+
+export const MovieForm: FC<Props> = ({ initialMovie }) => {
   const { toast } = useToast()
 
   const onSubmit = async (movie: Movie) => {

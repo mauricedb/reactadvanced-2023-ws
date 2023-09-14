@@ -8,11 +8,7 @@ type Cart = {
   movies: ShoppingCartMovie[]
 }
 
-export async function checkoutShoppingCart({
-  account,
-  customerName,
-  movies,
-}: Cart) {
+export function checkoutShoppingCart({ account, customerName, movies }: Cart) {
   const totalAmount = movies.length * 9.99
   console.group(`checkout for ${customerName}`)
   console.log(

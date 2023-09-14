@@ -1,3 +1,5 @@
+'use client'
+
 import './globals.css'
 
 import type { PropsWithChildren } from 'react'
@@ -20,9 +22,7 @@ export const metadata: Metadata = {
   ],
 }
 
-type Props = PropsWithChildren
-
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <body

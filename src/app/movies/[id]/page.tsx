@@ -11,20 +11,6 @@ type Props = {
   }
 }
 
-async function saveMovie(movie: Movie) {
-  const rsp = await fetch(`/api/movies/${movie.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(movie),
-  })
-
-  if (!rsp.ok) {
-    throw new Error('Something went wrong saving the movie')
-  }
-}
-
 const MoviePage: FC<Props> = ({ params: { id } }) => {
   const [movie, setMovie] = useState<Movie | null>(null)
 
@@ -52,7 +38,7 @@ const MoviePage: FC<Props> = ({ params: { id } }) => {
         Movie details for: {movie.title}
       </h2>
 
-      <MovieForm initialMovie={movie} saveMovie={saveMovie} />
+      <MovieForm initialMovie={movie} />
     </main>
   )
 }
