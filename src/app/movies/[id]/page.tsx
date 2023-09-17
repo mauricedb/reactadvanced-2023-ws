@@ -9,6 +9,8 @@ type Props = {
   }
 }
 
+export const dynamic = 'force-dynamic'
+
 const MoviePage: FC<Props> = async ({ params: { id } }) => {
   async function fetchMovie() {
     const rsp = await fetch(`http://localhost:3000/api/movies/${id}`)
