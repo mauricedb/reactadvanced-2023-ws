@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client'
 import { MovieCard } from '@/components/movie-card'
 import { prisma } from '@/lib/db'
 import { ComponentProps } from 'react'
+import { sleep } from '@/lib/utils'
 
 type Props = {
   searchParams: {
@@ -27,6 +28,8 @@ async function getMovies(genreId: string | undefined): Promise<MovieForCard[]> {
     voteAverage: true,
     voteCount: true,
   } satisfies Prisma.MovieSelect
+
+  // await sleep(1_000)
 
   if (genreId) {
     const genre = await prisma.genre.findFirst({

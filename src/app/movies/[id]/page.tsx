@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 
 import { MovieForm } from '@/components/movie-form'
 import { prisma } from '@/lib/db'
+import { sleep } from '@/lib/utils'
 
 type Props = {
   params: {
@@ -15,6 +16,8 @@ async function getMovie(id: string) {
   const movie = await prisma.movie.findFirstOrThrow({
     where: { id: +id },
   })
+
+  // await sleep(1_000)
 
   return movie
 }
