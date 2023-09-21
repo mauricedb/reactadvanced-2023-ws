@@ -1,29 +1,15 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Genre } from '@prisma/client'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { prisma } from '@/lib/db'
+import { useRouter } from 'next/navigation'
+import { FC } from 'react'
 
 type Props = {
   genres: Genre[]
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const genres = await prisma.genre.findMany({
-    orderBy: {
-      name: 'asc',
-    },
-  })
-
-  return {
-    props: {
-      genres,
-    },
-  }
-}
-
-function GenresPage({ genres }: Props) {
+export const GenresList: FC<Props> = ({ genres }) => {
   const router = useRouter()
 
   return (
@@ -49,5 +35,3 @@ function GenresPage({ genres }: Props) {
     </main>
   )
 }
-
-export default GenresPage
