@@ -1,3 +1,5 @@
+'use server'
+
 import { Movie } from '@prisma/client'
 
 type ShoppingCartMovie = Pick<Movie, 'id' | 'title'>
@@ -8,7 +10,11 @@ type Cart = {
   movies: ShoppingCartMovie[]
 }
 
-export function checkoutShoppingCart({ account, customerName, movies }: Cart) {
+export async function checkoutShoppingCart({
+  account,
+  customerName,
+  movies,
+}: Cart) {
   const totalAmount = movies.length * 9.99
   console.group(`checkout for ${customerName}`)
   console.log(

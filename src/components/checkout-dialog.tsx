@@ -52,7 +52,7 @@ export function CheckoutDialog({
 
   const onSubmit = async (data: CheckoutForm) => {
     try {
-      checkoutShoppingCart({
+      await checkoutShoppingCart({
         account: data.account,
         customerName: data.name,
         movies,
