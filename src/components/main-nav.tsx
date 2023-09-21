@@ -2,13 +2,18 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { ReactNode, Suspense } from 'react'
+import { RotateCw } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { useShoppingCart } from './shopping-cart'
-import { GenreSelector } from './genre-selector'
 
-export function MainNav() {
+type Props = {
+  genreSelector: ReactNode
+}
+
+export function MainNav({ genreSelector }: Props) {
   const { itemCount, checkout } = useShoppingCart()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -38,7 +43,14 @@ export function MainNav() {
             </Link>
           )
         })}
-        <GenreSelector />
+
+        <Suspense
+          fallback={
+            <RotateCw className="animate-spin text-foreground/60" size={20} />
+          }
+        >
+          {genreSelector}
+        </Suspense>
 
         <Link
           href="/genres"
